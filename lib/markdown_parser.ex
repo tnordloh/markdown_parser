@@ -13,7 +13,10 @@ defmodule MarkdownParser do
 
   """
   def parse(string) do
-    "<p>" <> string <> "</p>"
+    string
+    |> split_by_block
+    |> Enum.map(fn(x) -> to_paragraph(x); end)
+    |> Enum.join("\n")
   end
 
   @doc """
@@ -29,4 +32,20 @@ defmodule MarkdownParser do
     String.split(string, "\n\n")
   end
 
+  def identify_block(string) do
+    { :paragraph, string }
+  end
+
+  @doc """
+  Splits markdown text by block
+
+  ## Examples
+
+      iex> MarkdownParser.to_paragraph("markdown" )
+      "<p>markdown</p>"
+
+  """
+  def to_paragraph(string) do
+    "<p>" <> string <> "</p>"
+  end
 end

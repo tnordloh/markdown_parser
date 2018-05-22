@@ -1,10 +1,13 @@
 # MarkdownParser
 
-**TODO: Add description**
+A simple markdown parser, written in Elixir.
+
+Goals
+* parse all markdown in less than 100 lines of code, not counting tests and docs
 
 ## Installation
 
-If [available in Hex](https://hex.pm/docs/publish), the package can be installed
+If --[available in Hex](https://hex.pm/docs/publish)--, the package can be installed
 by adding `markdown_parser` to your list of dependencies in `mix.exs`:
 
 ```elixir
