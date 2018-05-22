@@ -42,4 +42,10 @@ defmodule MarkdownParserTest do
     html     = "<p>hello</p>"
     assert MarkdownParser.to_paragraph(markdown) === html
   end
+
+  test "convert text to bullets" do
+    markdown = "* one\n* two"
+    html = "<ul>\n<li>one</li>\n<li>two</li>\n</ul>"
+    assert MarkdownParser.to_bullets(markdown) === html
+  end
 end
