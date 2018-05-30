@@ -37,18 +37,6 @@ defmodule MarkdownParserTest do
     assert MarkdownParser.split_by_block(markdown) == html
   end
 
-  test "convert text to paragraph" do
-    markdown = "hello"
-    html     = "<p>hello</p>"
-    assert MarkdownParser.to_paragraph(markdown) === html
-  end
-
-  test "convert text to bullets" do
-    markdown = "* one\n* two"
-    html = "<ul>\n<li>one</li>\n<li>two</li>\n</ul>"
-    assert MarkdownParser.to_bullets(markdown) === html
-  end
-
   test "correctly reads different types of markdown" do
     bullets =          "* one\n* two"
     bullets_html       = "<ul>\n<li>one</li>\n<li>two</li>\n</ul>"

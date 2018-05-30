@@ -42,23 +42,11 @@ defmodule MarkdownParser do
 
   def parse_block(block) do
     case block do
-      { :paragraph, string} -> to_paragraph(string)
-      { :bullets,   string} -> to_bullets(string)
+      { :paragraph, string} -> Parser.to_paragraph(string)
+      { :bullets,   string} -> Parser.to_bullets(string)
     end
   end
 
-  @doc """
-  Splits markdown text by block
-
-  ## Examples
-
-      iex> MarkdownParser.to_paragraph("markdown" )
-      "<p>markdown</p>"
-
-  """
-  def to_paragraph(string) do
-    "<p>" <> string <> "</p>"
-  end
 
   def to_bullets(string) do
     bullets = String.split(string,"\n")
