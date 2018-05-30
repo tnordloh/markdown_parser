@@ -48,4 +48,14 @@ defmodule MarkdownParserTest do
     html = "<ul>\n<li>one</li>\n<li>two</li>\n</ul>"
     assert MarkdownParser.to_bullets(markdown) === html
   end
+
+  test "correctly reads different types of markdown" do
+    bullets =          "* one\n* two"
+    bullets_html       = "<ul>\n<li>one</li>\n<li>two</li>\n</ul>"
+    paragraph          = "hello"
+    paragraph_html     = "<p>hello</p>"
+    total_md = bullets <> "\n\n" <> paragraph
+    total_html       = bullets_html <> "\n" <> paragraph_html
+    assert MarkdownParser.parse(total_md) === total_html
+  end
 end

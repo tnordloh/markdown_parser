@@ -34,7 +34,10 @@ defmodule MarkdownParser do
   end
 
   def identify_block(string) do
-    { :paragraph, string }
+    cond do
+      string |> String.starts_with?("*") -> {:bullets, string}
+      true -> {:paragraph, string}
+    end
   end
 
   def parse_block(block) do
