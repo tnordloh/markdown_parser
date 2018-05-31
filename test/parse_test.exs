@@ -14,4 +14,22 @@ defmodule ParserTest do
     assert Parser.to_bullets(markdown) === html
   end
 
+  test "convert text header bullets" do
+    markdown = "###### aich6"
+    html = "<H6>aich6</H6>"
+    assert Parser.to_header(markdown) === html
+
+    markdown = "#### aich4"
+    html = "<H4>aich4</H4>"
+    assert Parser.to_header(markdown) === html
+
+    markdown = "#### aich4 #########"
+    html = "<H4>aich4</H4>"
+    assert Parser.to_header(markdown) === html
+
+    markdown = "#### ai # ch4 #########"
+    html = "<H4>ai # ch4</H4>"
+    assert Parser.to_header(markdown) === html
+
+  end
 end

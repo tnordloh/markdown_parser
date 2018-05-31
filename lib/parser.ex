@@ -29,4 +29,11 @@ defmodule Parser do
               |> Enum.join("\n")
     "<ul>\n" <> bullets <> "\n</ul>"
   end
+
+  def to_header(string) do
+    header_elements = Regex.named_captures(~r/(?<count>\#+)(\s+)(?<text>((?![# ]+$).)*)(\s\#+)*/, string)
+    size = String.length(header_elements["count"])
+    |> Integer.to_string
+    "<H" <> size <> ">" <> header_elements["text"] <> "</H" <> size <> ">"
+  end
 end

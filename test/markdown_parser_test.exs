@@ -46,4 +46,23 @@ defmodule MarkdownParserTest do
     total_html       = bullets_html <> "\n" <> paragraph_html
     assert MarkdownParser.parse(total_md) === total_html
   end
+
+  test "Correctly identifies a header" do
+    header = "## hello "
+    response = {:header, header}
+    assert MarkdownParser.identify_block(header) === response
+  end
+
+  test "Correctly identifies bullet" do
+    header = "* hello "
+    response = {:bullets, header}
+    assert MarkdownParser.identify_block(header) === response
+  end
+
+  test "correctly identifies a paragraph" do
+    header = "hello "
+    response = {:paragraph, header}
+    assert MarkdownParser.identify_block(header) === response
+  end
+
 end

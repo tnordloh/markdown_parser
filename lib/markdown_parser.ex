@@ -36,24 +36,13 @@ defmodule MarkdownParser do
   def identify_block(string) do
     cond do
       string |> String.starts_with?("*") -> {:bullets, string}
+      string |> String.starts_with?("#") -> {:header, string}
       true -> {:paragraph, string}
     end
   end
 
-  def parse_block(block) do
-    case block do
-      { :paragraph, string} -> Parser.to_paragraph(string)
-      { :bullets,   string} -> Parser.to_bullets(string)
-    end
-  end
-
-
-  def to_bullets(string) do
-    bullets = String.split(string,"\n")
-              |> Enum.map(fn(x) -> String.replace(x,"* ","")  ; end)
-              |> Enum.map(fn(x) -> "<li>" <> x <> "</li>" ; end)
-              |> Enum.join("\n")
-    "<ul>\n" <> bullets <> "\n</ul>"
-  end
+  def parse_block({:paragraph, string}), do: Parser.to_paragraph(string)
+  def parse_block({:bullets,   string}), do: Parser.to_bullets(string)
+  def parse_block({:header,    string}), do: Parser.to_header(string)
 
 end
